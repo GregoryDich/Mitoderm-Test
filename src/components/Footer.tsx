@@ -1,19 +1,26 @@
 'use client';
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 
-const MAIN_SITE_URL = 'https://mitoderm.vercel.app/he';
+const MAIN_SITE_URL = 'https://mitoderm.vercel.app';
 
 export default function Footer() {
+  const t = useTranslations('footer');
+  const locale = useLocale();
+
+  const siteUrl = `${MAIN_SITE_URL}/${locale}`;
+
   return (
-    <footer className="w-full bg-black" dir="rtl">
+    <footer className="w-full bg-black">
       <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-4 px-5 py-[88px] md:flex-row-reverse md:gap-8 md:px-8">
         {/* Copyright */}
         <span
-          className="text-center text-sm md:text-right"
+          className="text-center text-sm md:text-start"
           style={{ color: '#787677' }}
         >
-          © {new Date().getFullYear()} MitoDerm. כל הזכויות שמורות.
+          {t('copyright', { year: new Date().getFullYear() })}
         </span>
 
         {/* Links */}
@@ -24,7 +31,7 @@ export default function Footer() {
             onMouseEnter={(e) => { e.currentTarget.style.color = '#fff'; }}
             onMouseLeave={(e) => { e.currentTarget.style.color = '#787677'; }}
           >
-            נגישות
+            {t('accessibility')}
           </button>
 
           <button
@@ -33,17 +40,17 @@ export default function Footer() {
             onMouseEnter={(e) => { e.currentTarget.style.color = '#fff'; }}
             onMouseLeave={(e) => { e.currentTarget.style.color = '#787677'; }}
           >
-            מדיניות פרטיות
+            {t('privacy')}
           </button>
 
           <a
-            href={MAIN_SITE_URL}
+            href={siteUrl}
             className="text-sm transition-colors duration-300"
             style={{ color: '#787677' }}
             onMouseEnter={(e) => { e.currentTarget.style.color = '#fff'; }}
             onMouseLeave={(e) => { e.currentTarget.style.color = '#787677'; }}
           >
-            MitoDerm Group
+            {t('group')}
           </a>
         </div>
       </div>

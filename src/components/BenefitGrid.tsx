@@ -3,14 +3,19 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Award, Users, BookOpen, Trophy, Target, Zap } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import type { WorkshopVariant } from '@/types';
 
 interface BenefitGridProps {
-  items: string[];
+  variant: WorkshopVariant;
 }
 
 const icons = [Award, Users, BookOpen, Trophy, Target, Zap];
 
-export default function BenefitGrid({ items }: BenefitGridProps) {
+export default function BenefitGrid({ variant }: BenefitGridProps) {
+  const t = useTranslations();
+  const items = t(`v${variant}.benefits`).split('|');
+
   return (
     <section className="bg-gradient-to-b from-[#0f1829] to-[#1a2744] py-8 md:py-12">
       <div className="mx-auto max-w-6xl px-4">
@@ -21,8 +26,8 @@ export default function BenefitGrid({ items }: BenefitGridProps) {
           transition={{ duration: 0.6 }}
           className="mb-8 text-center"
         >
-          <h2 className="text-2xl font-bold text-white md:text-3xl">למה לבחור בנו?</h2>
-          <p className="mt-2 text-sm text-white/60">היתרונות שיעזרו לך להצליח</p>
+          <h2 className="text-2xl font-bold text-white md:text-3xl">{t('benefits.heading')}</h2>
+          <p className="mt-2 text-sm text-white/60">{t('benefits.subtitle')}</p>
         </motion.div>
 
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">

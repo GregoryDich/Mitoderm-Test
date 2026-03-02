@@ -3,14 +3,16 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import type { WorkshopVariant } from '@/types';
 
 interface InviteSectionProps {
-  titleLines: { text: string; accent?: "gold" }[];
-  body: { parts: { text: string; accent?: "gold" }[] };
-  cta: string;
+  variant: WorkshopVariant;
 }
 
-export default function InviteSection({ titleLines, body, cta }: InviteSectionProps) {
+export default function InviteSection({ variant }: InviteSectionProps) {
+  const t = useTranslations();
+
   return (
     <section className="mx-auto max-w-6xl px-4 py-16">
       <motion.div
@@ -28,7 +30,7 @@ export default function InviteSection({ titleLines, body, cta }: InviteSectionPr
               opacity: [0.3, 0.5, 0.3],
             }}
             transition={{ duration: 8, repeat: Infinity }}
-            className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#dfba74]/10 blur-3xl"
+            className="absolute -top-20 h-64 w-64 rounded-full bg-[#dfba74]/10 blur-3xl end-[-5rem]"
           />
           <motion.div
             animate={{
@@ -36,7 +38,7 @@ export default function InviteSection({ titleLines, body, cta }: InviteSectionPr
               opacity: [0.2, 0.4, 0.2],
             }}
             transition={{ duration: 10, repeat: Infinity, delay: 1 }}
-            className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#be800c]/10 blur-3xl"
+            className="absolute -bottom-20 h-64 w-64 rounded-full bg-[#be800c]/10 blur-3xl start-[-5rem]"
           />
         </div>
 
@@ -47,11 +49,9 @@ export default function InviteSection({ titleLines, body, cta }: InviteSectionPr
           transition={{ delay: 0.2, duration: 0.8 }}
           className="relative z-10 mx-auto max-w-4xl text-3xl font-normal leading-tight text-[#be800c] md:text-4xl"
         >
-          {titleLines.map((p, i) => (
-            <span key={i} className={p.accent === "gold" ? "text-[#dfba74] font-bold" : ""}>
-              {p.text}
-            </span>
-          ))}
+          <span>{t(`v${variant}.invite.title`)}</span>
+          <span className="font-bold text-[#dfba74]">{t(`v${variant}.invite.titleAccent`)}</span>
+          <span>{t(`v${variant}.invite.titleEnd`)}</span>
         </motion.h2>
 
         <motion.p
@@ -61,11 +61,9 @@ export default function InviteSection({ titleLines, body, cta }: InviteSectionPr
           transition={{ delay: 0.4, duration: 0.8 }}
           className="relative z-10 mx-auto mt-6 max-w-4xl whitespace-pre-wrap text-base leading-relaxed tracking-wide text-[#f8ecd6] md:text-lg"
         >
-          {body.parts.map((p, i) => (
-            <span key={i} className={p.accent === "gold" ? "text-[#dfba74] font-semibold" : ""}>
-              {p.text}
-            </span>
-          ))}
+          <span>{t(`v${variant}.invite.body`)}</span>
+          <span className="font-semibold text-[#dfba74]">{t(`v${variant}.invite.bodyAccent`)}</span>
+          <span>{t(`v${variant}.invite.bodyEnd`)}</span>
         </motion.p>
 
         <motion.a
@@ -78,7 +76,7 @@ export default function InviteSection({ titleLines, body, cta }: InviteSectionPr
           href="#contact"
           className="relative z-10 mt-10 inline-flex items-center gap-3 rounded-[72px] bg-gradient-to-r from-[#fcd384] to-[#ffefcb] px-12 py-6 text-sm font-bold tracking-wide text-[#222] shadow-xl transition"
         >
-          <span>{cta}</span>
+          <span>{t(`v${variant}.invite.cta`)}</span>
           <ArrowLeft className="h-4 w-4" />
         </motion.a>
 
@@ -88,7 +86,7 @@ export default function InviteSection({ titleLines, body, cta }: InviteSectionPr
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.8, duration: 1 }}
-          className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#dfba74] to-transparent"
+          className="absolute inset-inline-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-[#dfba74] to-transparent"
         />
       </motion.div>
     </section>

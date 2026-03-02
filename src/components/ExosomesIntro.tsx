@@ -2,17 +2,24 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
+import type { WorkshopVariant } from '@/types';
 
 interface ExosomesIntroProps {
-  heading: string;
-  subheading: string;
-  cards: { title: string; body: string }[];
-  footerLine: string;
+  variant: WorkshopVariant;
 }
 
-export default function ExosomesIntro({ heading, subheading, cards, footerLine }: ExosomesIntroProps) {
+export default function ExosomesIntro({ variant }: ExosomesIntroProps) {
+  const t = useTranslations();
+
+  const cards = [
+    { title: t(`v${variant}.exosomes.card1Title`), body: t(`v${variant}.exosomes.card1Body`) },
+    { title: t(`v${variant}.exosomes.card2Title`), body: t(`v${variant}.exosomes.card2Body`) },
+    { title: t(`v${variant}.exosomes.card3Title`), body: t(`v${variant}.exosomes.card3Body`) },
+  ];
+
   return (
-    <section className="bg-[#0f1829] py-16" dir="rtl">
+    <section className="bg-[#0f1829] py-16">
       <div className="mx-auto max-w-6xl px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -21,8 +28,10 @@ export default function ExosomesIntro({ heading, subheading, cards, footerLine }
           transition={{ duration: 0.6 }}
           className="mb-6 text-center"
         >
-          <h2 className="mb-3 text-4xl font-bold text-[#dfba74]">{heading}</h2>
-          <p className="text-lg text-white/80">{subheading}</p>
+          <h2 className="mb-3 text-4xl font-bold text-[#dfba74]">
+            {t(`v${variant}.exosomes.heading`)}
+          </h2>
+          <p className="text-lg text-white/80">{t(`v${variant}.exosomes.subheading`)}</p>
         </motion.div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -34,7 +43,7 @@ export default function ExosomesIntro({ heading, subheading, cards, footerLine }
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.2 }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="rounded-3xl border border-white/10 bg-white/5 p-8 text-right backdrop-blur-sm transition hover:bg-white/10"
+              className="rounded-3xl border border-white/10 bg-white/5 p-8 text-start backdrop-blur-sm transition hover:bg-white/10"
             >
               <h3 className="mb-4 text-xl font-bold text-[#dfba74]">{card.title}</h3>
               <p className="leading-relaxed text-white/90">{card.body}</p>
@@ -49,7 +58,7 @@ export default function ExosomesIntro({ heading, subheading, cards, footerLine }
           transition={{ delay: 0.8, duration: 0.6 }}
           className="mt-10 text-center text-sm text-white/60"
         >
-          {footerLine}
+          {t(`v${variant}.exosomes.footer`)}
         </motion.p>
       </div>
     </section>
