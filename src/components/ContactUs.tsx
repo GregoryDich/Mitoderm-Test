@@ -3,38 +3,21 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Phone, MapPin, Mail, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
-interface ContactUsProps {
-  heading: string;
-  phoneLabel: string;
-  phoneValue: string;
-  addressLabel: string;
-  addressValue: string;
-  emailLabel: string;
-  emailValue: string;
-  follow: string;
-}
+export default function ContactUs() {
+  const t = useTranslations('contact');
 
-export default function ContactUs({
-  heading,
-  phoneLabel,
-  phoneValue,
-  addressLabel,
-  addressValue,
-  emailLabel,
-  emailValue,
-  follow,
-}: ContactUsProps) {
   const contactItems = [
-    { icon: Phone, label: phoneLabel, value: phoneValue },
-    { icon: MapPin, label: addressLabel, value: addressValue },
-    { icon: Mail, label: emailLabel, value: emailValue },
+    { icon: Phone, label: t('phoneLabel'), value: t('phoneValue') },
+    { icon: MapPin, label: t('addressLabel'), value: t('addressValue') },
+    { icon: Mail, label: t('emailLabel'), value: t('emailValue') },
   ];
 
   const socialLinks = [
-    { icon: Facebook, href: "https://www.facebook.com/mitoderm.israel", label: "Facebook" },
-    { icon: Instagram, href: "https://www.instagram.com/mitoderm_israel/", label: "Instagram" },
-    { icon: Linkedin, href: "https://www.linkedin.com/company/mitoderm", label: "LinkedIn" },
+    { icon: Facebook, href: 'https://www.facebook.com/mitoderm.israel', label: 'Facebook' },
+    { icon: Instagram, href: 'https://www.instagram.com/mitoderm_israel/', label: 'Instagram' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/mitoderm', label: 'LinkedIn' },
   ];
 
   return (
@@ -47,7 +30,7 @@ export default function ContactUs({
           transition={{ duration: 0.6 }}
           className="mb-10 text-center text-3xl font-bold text-white"
         >
-          {heading}
+          {t('heading')}
         </motion.h2>
 
         <div className="grid gap-8 md:grid-cols-3">
@@ -68,7 +51,6 @@ export default function ContactUs({
           ))}
         </div>
 
-        {/* Social Media */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -76,7 +58,7 @@ export default function ContactUs({
           transition={{ delay: 0.6, duration: 0.6 }}
           className="mt-10 text-center"
         >
-          <p className="mb-4 text-sm text-white/60">{follow}</p>
+          <p className="mb-4 text-sm text-white/60">{t('follow')}</p>
           <div className="flex justify-center gap-4">
             {socialLinks.map((social, i) => (
               <motion.a

@@ -2,16 +2,19 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
+import { useTranslations } from 'next-intl';
+import type { WorkshopVariant } from '@/types';
 
 interface AgendaAccordionProps {
-  heading: string;
-  items: string[];
-  cta: string;
+  variant: WorkshopVariant;
 }
 
-export default function AgendaAccordion({ heading, items, cta }: AgendaAccordionProps) {
+export default function AgendaAccordion({ variant }: AgendaAccordionProps) {
+  const t = useTranslations();
+  const items = t(`v${variant}.topics.items`).split('|');
+
   return (
-    <section className="bg-gradient-to-b from-[#0f1829] to-[#1a2744] py-16" dir="rtl">
+    <section className="bg-gradient-to-b from-[#0f1829] to-[#1a2744] py-16">
       <div className="mx-auto max-w-4xl px-4">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -20,7 +23,7 @@ export default function AgendaAccordion({ heading, items, cta }: AgendaAccordion
           transition={{ duration: 0.6 }}
           className="mb-12 text-center text-3xl font-bold text-white md:text-4xl"
         >
-          {heading}
+          {t(`v${variant}.topics.heading`)}
         </motion.h2>
 
         <div className="space-y-4">
@@ -34,7 +37,7 @@ export default function AgendaAccordion({ heading, items, cta }: AgendaAccordion
               whileHover={{ scale: 1.02 }}
               className="overflow-hidden rounded-[32px] bg-white p-6 shadow-lg transition md:p-8"
             >
-              <p className="text-right text-base leading-relaxed text-[#1a2744] md:text-lg">
+              <p className="text-start text-base leading-relaxed text-[#1a2744] md:text-lg">
                 {item}
               </p>
             </motion.div>
@@ -53,7 +56,7 @@ export default function AgendaAccordion({ heading, items, cta }: AgendaAccordion
             whileTap={{ scale: 0.95 }}
             className="rounded-full bg-gradient-to-r from-[#dfba74] to-[#be800c] px-12 py-4 text-lg font-bold text-white shadow-2xl transition hover:shadow-3xl"
           >
-            {cta}
+            {t(`v${variant}.topics.cta`)}
           </motion.button>
         </motion.div>
       </div>

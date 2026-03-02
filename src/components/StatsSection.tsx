@@ -3,20 +3,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'motion/react';
 import { Users, Award, Briefcase, TrendingUp } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface StatItem {
   icon: React.ElementType;
   value: number;
   suffix: string;
-  label: string;
+  labelKey: string;
 }
 
 export default function StatsSection() {
+  const t = useTranslations('stats');
+
   const stats: StatItem[] = [
-    { icon: Users, value: 500, suffix: '+', label: 'מומחים השתתפו' },
-    { icon: Award, value: 15, suffix: '+', label: 'שנות ניסיון' },
-    { icon: Briefcase, value: 50, suffix: '+', label: 'סדנאות הצלחה' },
-    { icon: TrendingUp, value: 98, suffix: '%', label: 'שביעות רצון' },
+    { icon: Users, value: 500, suffix: '+', labelKey: 'experts' },
+    { icon: Award, value: 15, suffix: '+', labelKey: 'years' },
+    { icon: Briefcase, value: 50, suffix: '+', labelKey: 'workshops' },
+    { icon: TrendingUp, value: 98, suffix: '%', labelKey: 'satisfaction' },
   ];
 
   return (
@@ -29,13 +32,13 @@ export default function StatsSection() {
           transition={{ duration: 0.6 }}
           className="mb-12 text-center"
         >
-          <h2 className="text-3xl font-bold text-[#dfba74] md:text-4xl">המספרים מדברים בעד עצמם</h2>
-          <p className="mt-3 text-base text-white/70">הצלחה שנמדדת בתוצאות אמיתיות</p>
+          <h2 className="text-3xl font-bold text-[#dfba74] md:text-4xl">{t('heading')}</h2>
+          <p className="mt-3 text-base text-white/70">{t('subtitle')}</p>
         </motion.div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, i) => (
-            <StatCard key={i} stat={stat} delay={i * 0.1} />
+            <StatCard key={i} stat={stat} delay={i * 0.1} label={t(stat.labelKey)} />
           ))}
         </div>
       </div>
@@ -43,7 +46,7 @@ export default function StatsSection() {
   );
 }
 
-function StatCard({ stat, delay }: { stat: StatItem; delay: number }) {
+function StatCard({ stat, delay, label }: { stat: StatItem; delay: number; label: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -52,7 +55,7 @@ function StatCard({ stat, delay }: { stat: StatItem; delay: number }) {
     if (!isInView) return;
 
     let startTime: number;
-    const duration = 2000; // 2 seconds
+    const duration = 2000;
 
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
@@ -79,7 +82,6 @@ function StatCard({ stat, delay }: { stat: StatItem; delay: number }) {
       whileHover={{ y: -10, scale: 1.03 }}
       className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-white/10 to-white/5 p-8 text-center backdrop-blur-sm"
     >
-      {/* Glow effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#dfba74]/0 to-[#dfba74]/0 opacity-0 transition-opacity group-hover:from-[#dfba74]/10 group-hover:to-[#be800c]/10 group-hover:opacity-100" />
 
       <motion.div
@@ -97,7 +99,7 @@ function StatCard({ stat, delay }: { stat: StatItem; delay: number }) {
         <span className="text-[#dfba74]">{stat.suffix}</span>
       </div>
 
-      <div className="relative z-10 text-sm text-white/70">{stat.label}</div>
+      <div className="relative z-10 text-sm text-white/70">{label}</div>
     </motion.div>
   );
 }
