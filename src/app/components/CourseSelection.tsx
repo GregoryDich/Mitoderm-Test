@@ -1,8 +1,10 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
-import speaker1 from "figma:asset/bab5020b6f9d37c3ac7070b93d6b03d64dcf97ba.png";
-import speaker2 from "figma:asset/3a80a7853642fcbf9bb1fe0aa3df7590623a60a7.png";
-import speaker3 from "figma:asset/f8543591460436bd3387c6c000501376cd1af1ae.png";
+const speaker1 = "/images/speaker1.png";
+const speaker2 = "/images/speaker2.png";
+const speaker3 = "/images/speaker3.png";
 import { WorkshopVariant } from '../../lib/workshopContent';
 
 interface CourseSelectionProps {

@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'motion/react';
-import uniqueImage from "figma:asset/2f92854d54037db0c021a9b43639fe218d311665.png";
+const uniqueImage = "/images/unique.png";
 
 interface UniqueProps {
   titleParts: { text: string; accent?: "gold" }[];

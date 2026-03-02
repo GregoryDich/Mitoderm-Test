@@ -1,8 +1,9 @@
+'use client';
+
 import React from 'react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Check } from 'lucide-react';
 import { motion } from 'motion/react';
-import productImage from "figma:asset/c1eb92465613ac721cd7383eb6fc03967ed5f33c.png";
+const productImage = "/images/product.png";
 
 interface VTechTeaserProps {
   badge: string;

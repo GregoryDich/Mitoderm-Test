@@ -1,8 +1,9 @@
+'use client';
+
 import React from 'react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
 import { MessageCircle } from 'lucide-react';
 import { motion } from 'motion/react';
-import heroImage from "figma:asset/57fb638753c0478b1c3c1931763552dc7613e3c3.png";
+const heroImage = '/images/hero.png';
 
 interface HeroProps {
   kicker: string;

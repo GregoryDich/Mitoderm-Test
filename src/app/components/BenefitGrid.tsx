@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'motion/react';
 import { Award, Users, BookOpen, Trophy, Target, Zap } from 'lucide-react';

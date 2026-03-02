@@ -1,7 +1,9 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'motion/react';
 import { Heart } from 'lucide-react';
-import logo from 'figma:asset/706c33f15a9e0d6ed9eaaf8286119c3d1bb192c7.png';
+const logo = '/images/logo.png';
 
 interface FooterProps {
   line1: string;
