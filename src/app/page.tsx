@@ -48,7 +48,7 @@ export default function WorkshopPage() {
         dir="rtl"
       />
 
-      <Navbar items={c.nav.items} lang={c.nav.lang} />
+      <Navbar onRegisterClick={() => setIsModalOpen(true)} />
       <Hero
         {...c.hero}
         onCtaClick={() => setIsModalOpen(true)}
@@ -154,7 +154,7 @@ export default function WorkshopPage() {
         </div>
       </motion.section>
 
-      <Footer {...c.footer} />
+      <Footer />
       <ScrollToTop />
 
       <RegistrationModal
