@@ -52,6 +52,20 @@ export type WorkshopContent = {
     bullets: string[];
     footnote: string;
   };
+  contact: {
+    heading: string;
+    phoneLabel: string;
+    phoneValue: string;
+    addressLabel: string;
+    addressValue: string;
+    emailLabel: string;
+    emailValue: string;
+    follow: string;
+  };
+  footer: {
+    line1: string;
+    line2: string;
+  };
 };
 
 export const contentByVariant: Record<WorkshopVariant, WorkshopContent> = {
