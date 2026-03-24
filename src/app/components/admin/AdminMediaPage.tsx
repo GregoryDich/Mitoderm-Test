@@ -105,26 +105,35 @@ export function AdminMediaPage() {
   };
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-6">
+      {/* Page header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1>Media Library</h1>
-          <p className="text-muted-foreground mt-1">Manage images, photos and assets</p>
+          <h1 className="text-2xl font-semibold text-white">Media Library</h1>
+          <p className="text-white/40 mt-1 text-sm">Manage images, photos and assets</p>
         </div>
         <div className="flex gap-2">
           {selected.length > 0 && (
-            <button onClick={deleteSelected} className="flex items-center gap-2 px-4 py-2.5 border border-destructive/30 text-destructive rounded-lg text-[0.85rem] hover:bg-destructive/10">
+            <button onClick={deleteSelected} className="flex items-center gap-2 px-4 py-2.5 border border-red-500/30 text-red-400 rounded-xl text-[0.85rem] hover:bg-red-400/10">
               <Trash2 className="w-4 h-4" /> Delete ({selected.length})
             </button>
           )}
           <button
             onClick={() => fileRef.current?.click()}
-            className="flex items-center gap-2 px-4 py-2.5 bg-[#818cf8] text-white rounded-lg text-[0.85rem] hover:bg-[#6366f1] transition-colors"
+            className="flex items-center gap-2 px-5 py-2.5 bg-[#818cf8] text-white rounded-xl text-[0.85rem] hover:bg-[#6366f1] transition-colors shadow-lg shadow-[#818cf8]/20"
           >
             <Upload className="w-4 h-4" /> Upload
           </button>
           <input ref={fileRef} type="file" multiple accept="image/*" className="hidden" onChange={handleFileInput} />
         </div>
+      </div>
+
+      {/* Dev note */}
+      <div className="p-4 rounded-xl bg-[#818cf8]/5 border border-[#818cf8]/15">
+        <p className="text-xs text-[#818cf8]/70">
+          <span className="font-medium text-[#818cf8]">Dev:</span> Media items have <code className="bg-[#818cf8]/10 px-1.5 py-0.5 rounded">id</code>, <code className="bg-[#818cf8]/10 px-1.5 py-0.5 rounded">folder</code>, <code className="bg-[#818cf8]/10 px-1.5 py-0.5 rounded">tags[]</code>, and <code className="bg-[#818cf8]/10 px-1.5 py-0.5 rounded">url</code>.
+          Drag-drop uploads via <code className="bg-emerald-400/10 text-emerald-400 px-1.5 py-0.5 rounded">File API</code>. Folders: Past Workshops, Programs, Products, Team, Results.
+        </p>
       </div>
 
       {/* Drop zone */}

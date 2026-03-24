@@ -225,16 +225,25 @@ export function AdminProgramsPage() {
   };
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-6">
+      {/* Page header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1>Programs</h1>
-          <p className="text-muted-foreground mt-1">Manage training programs, schedules and content</p>
+          <h1 className="text-2xl font-semibold text-white">Programs</h1>
+          <p className="text-white/40 mt-1 text-sm">Manage training programs, schedules and content</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2.5 bg-[#818cf8] text-white rounded-lg text-[0.85rem] hover:bg-[#6366f1] transition-colors">
+        <button className="flex items-center gap-2 px-5 py-2.5 bg-[#818cf8] text-white rounded-xl text-[0.85rem] hover:bg-[#6366f1] transition-colors shadow-lg shadow-[#818cf8]/20">
           <Plus className="w-4 h-4" />
           Add Program
         </button>
+      </div>
+
+      {/* Dev note */}
+      <div className="p-4 rounded-xl bg-[#818cf8]/5 border border-[#818cf8]/15">
+        <p className="text-xs text-[#818cf8]/70">
+          <span className="font-medium text-[#818cf8]">Dev:</span> Each program has multilingual titles (EN/HE/RU), locations with capacity, and bullet points.
+          Use <code className="bg-[#818cf8]/10 px-1.5 py-0.5 rounded">Program.id</code> as the key. Status: <code className="bg-emerald-400/10 text-emerald-400 px-1.5 py-0.5 rounded">active</code> <code className="bg-amber-400/10 text-amber-400 px-1.5 py-0.5 rounded">draft</code> <code className="bg-white/10 text-white/40 px-1.5 py-0.5 rounded">archived</code>
+        </p>
       </div>
 
       <div className="space-y-4">

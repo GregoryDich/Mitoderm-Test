@@ -12,10 +12,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }
 
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="dark flex min-h-screen bg-[#0b1120]">
       <AdminSidebar onLogout={() => setLoggedIn(false)} />
-      <main className="flex-1 p-6 lg:p-8 overflow-x-hidden">
-        {children}
+      <main className="flex-1 p-8 lg:p-10 overflow-x-hidden bg-gradient-to-br from-[#0f172a] via-[#0f172a] to-[#131d35]">
+        <div className="mx-auto max-w-6xl">
+          {children}
+        </div>
       </main>
     </div>
   );
